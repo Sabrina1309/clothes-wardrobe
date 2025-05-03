@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+
+  <input id="searchInput" placeholder="Type anything: indian, summer, black...">
+
+  <div id="wardrobe">
+
+  </div>
+
+
+  
+
+
+
+
+  <script>
+    const clothesList = [
+      {
+        name: "Black gym cloth",
+        occasion : "gym cloth", 
+        color: "black", 
+        season: "summer",
+        style: "western"
+
+      },
+
+      {
+        name: "T-shirts",
+        occasion: "casual",
+        color: "pink",
+        season: "summer",
+        style: "western"
+
+      },
+
+      {
+        name: "White Sneakers",
+        color: "white",
+        season: "all",
+        occasion: "casual",
+        style: "western"
+      },
+
+      {
+        name: "Red Satin Dress",
+        color: "red",
+        season: "summer",
+        occasion: "formal",
+        style: "western"
+      },
+
+      {
+        name: "Denim Shorts",
+        color: "blue",
+        season: "summer",
+        style: "western",
+        occasion: "casual"
+      },
+
+      {
+        name: "Oversized Hoodie",
+        color: "gray",
+        season: "winter",
+        style: "western",
+        occasion: "cozy"
+      },
+
+      {
+        name: "Floral Maxi Skirt",
+        color: "multicolor",
+        season: "spring",
+        style: "western",
+        occasion: "feminine"
+      },
+
+      {
+        name: "Blue Ripped Jeans",
+        color: "blue",
+        season: "fall",
+        occasion: "casual",
+        style: "western"
+      },
+
+      {
+        name: "Silk Pajama Set",
+        color: "pink",
+        season: "all",
+        occasion: "sleepwear",
+        style: "western"
+      },
+
+      {
+        name: "Golden Saree",
+        color: "gold",
+        season: "summer",
+        occasion: "traditional",
+        style: "indian"
+
+      },
+
+      {
+        name: "Red Lehenga",
+        color: "red",
+        season: "winter",
+        occasion: "wedding",
+        style: "indian"
+
+      },
+      {
+        name: "Blue Anarkali Suit",
+        color: "blue",
+        season: "all",
+        occasion: "festive",
+        style: "indian"
+      },
+
+      
+
+
+
+
+
+    ];
+
+    const wardrobeDiv = document.getElementById("wardrobe");
+    clothesList.forEach(item => {
+      const card = document.createElement("div");
+    card.innerHTML = `
+      <h3>${item.name}</h3>
+      <p>Color: ${item.color}</p>
+      <p>Type: ${item.type}</p>
+      <p>Season: ${item.season}</p>
+    `;
+    card.style.border = "1px solid #ccc";
+    card.style.padding = "10px";
+    card.style.margin = "10px";
+    card.style.borderRadius = "8px";
+
+    wardrobeDiv.appendChild(card);
+
+
+    });
+
+    const searchInput = document.getElementById("searchInput"); //grabbing the input field
+
+    searchInput.addEventListener("input", function() {
+      const searchTerm = searchInput.value.toLowerCase();
+
+      wardrobeDiv.innerHTML = "";
+
+
+      const filteredClothes = clothesList.filter(item => {
+        const value = searchTerm.toLowerCase() ;
+        return (
+          item.name.toLowerCase().includes(value)||
+          item.color.toLowerCase().includes(value)||
+          item.occasion.toLowerCase().includes(value)||
+          item.season.toLowerCase().includes(value)||
+          item.style.toLowerCase().includes(value)
+          
+        );
+      });
+
+
+
+          
+      displayClothes(filteredClothes);
+
+
+
+
+    });
+
+    function displayClothes(clothes) {
+  wardrobeDiv.innerHTML = ""; // clear the div first
+  clothes.forEach(item => {
+    const card = document.createElement("div");
+    card.innerHTML = `
+      <h3>${item.name}</h3>
+      <p>Color: ${item.color}</p>
+      <p>Season: ${item.season}</p>
+      <p>Occasion: ${item.occasion}</p>
+      <p>Style: ${item.style}</p>
+    `;
+    card.style.border = "1px solid #ccc";
+    card.style.padding = "10px";
+    card.style.margin = "10px";
+    card.style.borderRadius = "8px";
+    wardrobeDiv.appendChild(card);
+  });
+}
+
+
+    
+
+
+  </script>
+</body>
+</html>
